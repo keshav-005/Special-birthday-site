@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - Birthday Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+</head>
+
+<body class="admin-body">
+    <header class="hero">
+        <h1>Admin Portal 🎛️</h1>
+        <p>Customize everything for the birthday surprise!</p>
+        <div id="connection-status" class="connection-status disconnected">
+            <span class="status-dot"></span>
+            <span id="status-text">Checking Firebase...</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Site Settings -->
+        <section class="card admin-card">
+            <h2>🎨 Site Settings</h2>
+            <p style="color: var(--coffee-medium); margin-bottom: 1rem;">Customize the text that appears on the birthday page.</p>
+            <form id="settings-form">
+                <label for="setting-name">Birthday Person's Name</label>
+                <input type="text" id="setting-name" placeholder="e.g., Sarah" required>
+
+                <label for="setting-intro">Intro Screen Text</label>
+                <input type="text" id="setting-intro" placeholder="e.g., Something special is waiting for you...">
+
+                <label for="setting-hero">Hero Greeting</label>
+                <input type="text" id="setting-hero" placeholder="e.g., Happy Birthday!">
+
+                <label for="setting-hero-sub">Hero Subtext</label>
+                <input type="text" id="setting-hero-sub" placeholder="e.g., To the one who makes every day brighter.">
+
+                <label for="setting-story">Story Paragraph 1</label>
+                <textarea id="setting-story" rows="3" placeholder="The first paragraph of the story section..."></textarea>
+
+                <label for="setting-story2">Story Paragraph 2</label>
+                <textarea id="setting-story2" rows="2" placeholder="The second paragraph..."></textarea>
+
+                <label for="setting-closing-greeting">Closing Greeting</label>
+                <input type="text" id="setting-closing-greeting" placeholder="e.g., Dear Sarah,">
+
+                <label for="setting-closing">Closing Note</label>
+                <textarea id="setting-closing" rows="3" placeholder="The heartfelt closing message..."></textarea>
+
+                <label for="setting-closing2">Closing Note Line 2</label>
+                <input type="text" id="setting-closing2" placeholder="e.g., Here's to a year filled with love...">
+
+                <label for="setting-signoff">Signoff</label>
+                <input type="text" id="setting-signoff" placeholder="e.g., Happy Birthday! We love you! ❤️">
+
+                <label for="setting-footer">Footer Text</label>
+                <input type="text" id="setting-footer" placeholder="e.g., Made with ❤️ by your friends">
+
+                <button type="submit" class="btn">💾 Save Settings</button>
+            </form>
+        </section>
+
+        <!-- Manage Questions -->
+        <section class="card admin-card">
+            <h2>1. Manage Quiz Questions</h2>
+            <div id="admin-questions-list"></div>
+            <hr>
+            <h3>Add New Question</h3>
+            <form id="add-question-form">
+                <input type="text" id="q-text" placeholder="Question Text" required>
+                <input type="text" id="q-opt1" placeholder="Option 1" required>
+                <input type="text" id="q-opt2" placeholder="Option 2" required>
+                <input type="text" id="q-opt3" placeholder="Option 3" required>
+                <input type="text" id="q-opt4" placeholder="Option 4" required>
+                <button type="submit" class="btn">Add Question</button>
+            </form>
+        </section>
+
+        <!-- Manage Guesses -->
+        <section class="card admin-card">
+            <h2>2. Add Person's Guesses</h2>
+            <form id="add-guess-form">
+                <input type="text" id="guess-name" placeholder="Person's Name (e.g., Mom)" required>
+                <div id="guess-questions-container">
+                    <!-- Dynamic select boxes for each question will go here -->
+                </div>
+                <button type="submit" class="btn">Save Guesses</button>
+            </form>
+            <hr>
+            <h3>Saved Guesses</h3>
+            <div id="admin-guesses-list"></div>
+        </section>
+
+        <!-- Manage Messages -->
+        <section class="card admin-card">
+            <h2>3. Manage Messages</h2>
+            <form id="add-message-form">
+                <input type="text" id="msg-name" placeholder="Sender Name" required>
+                <textarea id="msg-text" placeholder="Message content" required></textarea>
+                <button type="submit" class="btn">Save Message</button>
+            </form>
+            <hr>
+            <h3>Saved Messages</h3>
+            <div id="admin-messages-list"></div>
+        </section>
+
+        <!-- Manage Gallery -->
+        <section class="card admin-card">
+            <h2>4. Manage Gallery</h2>
+
+            <!-- Image Upload Area -->
+            <div id="upload-zone" class="upload-zone">
+                <div class="upload-zone-content">
+                    <span style="font-size: 3rem;">📸</span>
+                    <p><strong>Click or drag photos here to upload</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--coffee-light);">JPG, PNG, WebP — max 5MB each</p>
+                </div>
+                <input type="file" id="photo-upload" accept="image/*" multiple style="display:none;">
+            </div>
+            <div id="upload-progress" style="display:none; margin: 1rem 0;">
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                <p id="upload-status" style="text-align:center; margin-top:0.5rem;">Uploading...</p>
+            </div>
+
+            <hr>
+            <h3>Current Gallery</h3>
+            <div id="admin-gallery-list" style="display:flex; flex-direction:column; gap:10px; margin-top: 1rem;"></div>
+        </section>
+
+        <div style="text-align:center; margin-bottom: 2rem;">
+            <a href="index.html" class="btn" style="margin-bottom: 1rem; display:inline-block;">👀 View Main Site</a>
+            <br>
+            <button class="btn" style="background-color: #ef4444; color: white; margin-top: 0.5rem;"
+                onclick="if(confirm('⚠️ This will delete ALL data from the database. Are you sure?')) { clearAllData(); }">🗑️ Clear All Data</button>
+        </div>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="firebase-utils.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

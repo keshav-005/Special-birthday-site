@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+</head>
+
+<body>
+    <div class="paw-pattern"></div>
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <!-- Grand Intro Splash Screen -->
+    <div id="intro-screen">
+        <div class="intro-content">
+            <h1 class="intro-text">Wait...!</h1>
+            <h2 class="intro-subtext" id="intro-subtext">Something special is waiting for you...</h2>
+            <button id="enter-btn" class="btn intro-btn"> READY! 🥳</button>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div id="main-content-wrapper" style="opacity: 0; pointer-events: none;">
+
+        <header class="section-spacer reveal-up hero-section">
+            <div class="hero-container">
+                <div class="cute-character">🥳🥳</div>
+                <h1 class="bounce-in" id="hero-greeting">Happy Birthday! 🎂</h1>
+                <p class="fade-in-delay" id="hero-subtext">To the one who makes every day brighter.</p>
+                <p class="fade-in-delay-2">This page is all about YOU today. Scroll down to explore! ⬇️</p>
+                <div class="scroll-indicator">↓</div>
+            </div>
+        </header>
+
+        <main>
+            <!-- A nice welcome note -->
+            <section class="card section-spacer reveal-up narrative-card">
+                <h2 id="story-title">The Story So Far...</h2>
+                <p id="story-text">Another year older, another year of being completely fabulous! 😎 We wanted to do
+                    something a little different for your birthday this year. So we built you a whole experience.</p>
+                <p id="story-text-2">Keep scrolling to see what everyone has to say, find out who knows you best, and
+                    look back at some of your greatest moments!</p>
+            </section>
+
+            <!-- Message Board (Sticky Notes) -->
+            <section id="messages" class="card section-spacer reveal-up">
+                <h2>Love & Wishes ✌️🤞</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Wishes from everyone who knows you best ❤️!</p>
+                <div id="message-board" class="sticky-board">
+                    <!-- Messages will appear here -->
+                </div>
+            </section>
+
+            <!-- Fun swipeable gallery -->
+            <section id="gallery" class="card section-spacer reveal-up">
+                <h2 style="font-size: 2.5rem; text-align: center;">Cute Captures 📸</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Swipe or use the arrows to see some of your best
+                    moments!</p>
+                <div class="carousel-container" id="carousel-container">
+                    <button class="carousel-btn prev-btn" id="prev-btn" onclick="moveCarousel(-1)">&#10094;</button>
+                    <div class="carousel-track-container" id="track-container">
+                        <div class="carousel-track" id="gallery-track">
+                            <!-- Javascript will inject polaroids here as carousel slides -->
+                        </div>
+                    </div>
+                    <button class="carousel-btn next-btn" id="next-btn" onclick="moveCarousel(1)">&#10095;</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="card section-spacer reveal-up">
+                <h2 style="font-size: 2.5rem; text-align: center;">The "Favorites" Challenge 🤐</h2>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                    Everyone thinks they know you best. We took their guesses... but now it's YOUR turn to set the
+                    record straight!
+                    <br><br>
+                    <strong>Answer these questions honestly to reveal the Leaderboard!</strong>
+                </p>
+
+                <div id="birthday-quiz-container" class="quiz-box">
+                    <p id="question-text" class="question-title">Loading...</p>
+                    <div id="options-container" class="options"></div>
+                </div>
+
+                <div id="leaderboard-section" class="quiz-box" style="display:none; margin-top: 2rem;">
+                    <h2>🏆 The Ultimate Leaderboard 🏆</h2>
+                    <p>Let's see who really pays attention!</p>
+                    <div id="leaderboard-container"></div>
+                </div>
+            </section>
+
+            <!-- Heartfelt Ending Note -->
+            <section class="card section-spacer reveal-up final-note">
+                <h2> Wishes For You 🌟</h2>
+                <div class="heartfelt-text">
+                    <p id="closing-greeting">Dear Birthday Star,</p>
+                    <p id="closing-text">We hope this little surprise brought a smile to your face. May this year bring
+                        you as much joy and happiness as you bring to everyone around you. Keep shining, keep being your
+                        amazing self, and never change.</p>
+                    <p id="closing-text-2">Here's to a year filled with love, laughter, and unforgettable moments.</p>
+                    <p><strong id="closing-signoff">Happy Birthday, once again! We all love you! ❤️</strong></p>
+                </div>
+                <div style="text-align: center; margin-top: 2rem; font-size: 3rem;">
+                    🎂🎊🎁
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p id="footer-text">Made with ❤️</p>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="firebase-utils.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
