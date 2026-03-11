@@ -176,4 +176,5 @@ That's it! Your config is saved. 🎉
 ## Need Help?
 
 - Open an issue on the GitHub repo
+- contact me through instagram - @keshav__0002
 - All Firebase services used are **100% free** for this scale of use
