@@ -79,7 +79,7 @@ The rest (`script.js`, `admin.js`, `firebase-utils.js`, `style.css`) just work �
 If this brought a smile to someone's face (or you're planning to use it):
 
 - ⭐ **Star this repo** — it helps others find it!
-- 👤 **Follow me on GitHub** — [@YOUR_USERNAME](https://github.com/YOUR_USERNAME) — I build fun stuff like this
+- 👤 **Follow me on GitHub** — @keshav-005(https://github.com/keshav-005) — I build fun stuff like this
 - 🍴 **Fork it** and make someone's birthday special
 
 ---
@@ -95,3 +95,4 @@ If this brought a smile to someone's face (or you're planning to use it):
 ## 📄 License
 
 MIT — use it, share it, make someone happy with it. ❤️
+Insta - @keshav_0002
