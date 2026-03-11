@@ -37,7 +37,8 @@ Open `config.js` in your forked repo (you can edit it directly on GitHub!) and p
 ### 4️⃣ Enable GitHub Pages
 Go to your repo → **Settings** → **Pages** → set source to **main branch** → Save.  
 Your site will be live in ~2 minutes at `https://yourusername.github.io/repo-name`
-
+(Each person gets their own separate site with their own Firebase database behind it. Nobody sees anyone else's data — it's completely independent per fork. and The admin portal would be at - 
+https://yourUSERNAME.github.io/your-REPO-NAME/admin.html)
 ### 5️⃣ Open the Admin Portal
 Go to `https://yoursite.com/admin.html` and:
 - 🎨 **Set the birthday person's name** and customize all the text
