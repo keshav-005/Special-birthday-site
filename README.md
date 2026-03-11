@@ -2,7 +2,7 @@
 
 I built this website to surprise my sister on her birthday.
 
-It had her photos, messages from family, and a **"Who Knows You Best?"** quiz where she answered questions and a leaderboard showed who actually knew her the most. When she opened it... she literally cried (the good kind 😭❤️).
+It had her photos, messages from family, and a **"Who Knows You Best?"** quiz where she answered questions and a leaderboard showed who actually knew her the most. When she opened it... she literally cried (the good kind ).
 
 Seeing how happy something this simple made her, I thought — **why not let everyone do this for their loved ones?**
 
