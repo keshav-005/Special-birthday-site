@@ -30,28 +30,54 @@ Firebase stores all your data (messages, photos, quiz) in the cloud for free.
 
 ---
 
-## Step 3: Add a Web App
+## Step 3: Add a Web App & Paste the Config
 
 1. In your Firebase project, click the **web icon** `</>` on the main page
 2. Enter an app nickname (e.g., `birthday-site`)
 3. ✅ Check **"Also set up Firebase Hosting"** (optional, but recommended)
 4. Click **Register App**
-5. You'll see a code block with `firebaseConfig` — **copy just the config object**:
+5. You'll see a code block with `firebaseConfig` — **keep this tab open, you'll need these values!**
+
+### How to edit `config.js` on GitHub (no tools needed!)
+
+6. Go to your **forked repo** on GitHub
+7. Click on **`config.js`** in the file list
+8. Click the **pencil icon ✏️** (top right of the file) to edit
+9. You'll see this:
 
 ```javascript
+// BEFORE — what it looks like right now:
 const firebaseConfig = {
-  apiKey: "AIza...",
-  authDomain: "sarah-birthday.firebaseapp.com",
-  projectId: "sarah-birthday",
-  storageBucket: "sarah-birthday.firebasestorage.app",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abc123"
+    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
+    projectId: "PASTE_YOUR_PROJECT_ID_HERE",
+    storageBucket: "PASTE_YOUR_PROJECT.firebasestorage.app",
+    messagingSenderId: "PASTE_YOUR_SENDER_ID_HERE",
+    appId: "PASTE_YOUR_APP_ID_HERE"
 };
 ```
 
-6. Open the file **`config.js`** in your project
-7. Replace the placeholder values with your values from Firebase
-8. Click **Continue to Console**
+10. Go back to the **Firebase tab** and copy each value one by one
+11. Replace each `PASTE_YOUR_...` with the real values from Firebase:
+
+```javascript
+// AFTER — what it should look like (your values will be different):
+const firebaseConfig = {
+    apiKey: "AIzaSyB1234567890abcdefg",
+    authDomain: "sarah-birthday.firebaseapp.com",
+    projectId: "sarah-birthday",
+    storageBucket: "sarah-birthday.firebasestorage.app",
+    messagingSenderId: "123456789012",
+    appId: "1:123456789012:web:abcdef123456"
+};
+```
+
+> ⚠️ **Important:** Only replace the text inside the `"quotes"`. Don't delete the quotes themselves, the commas, or the curly brackets!
+
+12. Click the green **"Commit changes"** button at the top right
+13. In the popup, click **"Commit changes"** again
+
+That's it! Your config is saved. 🎉
 
 ---
 
